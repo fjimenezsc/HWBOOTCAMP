@@ -1,0 +1,41 @@
+Sub Stocks()
+
+Dim ws As Worksheet
+
+For Each ws In Worksheets
+
+Dim x As Integer
+Dim WS_Count As Integer
+Dim w As Integer
+
+
+WS_Count = ActiveWorkbook.Worksheets.Count
+x = 2
+
+
+ws.Cells(1, 9).Value = "Ticker"
+ws.Cells(1, 10).Value = "Total Stock Volume"
+
+ws.Cells(2, 9) = ws.Cells(2, 1).Value
+
+LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+    For I = 2 To LastRow
+
+If ws.Cells(I, 1).Value = ws.Cells(x, 9).Value Then
+ws.Cells(x, 10) = ws.Cells(x, 10).Value + ws.Cells(I, 7).Value
+
+Else
+
+x = x + 1
+ws.Cells(x, 9) = ws.Cells(I, 1).Value
+ws.Cells(x, 10) = ws.Cells(I, 7).Value
+
+    
+End If
+
+Next I
+
+Next
+
+End Sub
